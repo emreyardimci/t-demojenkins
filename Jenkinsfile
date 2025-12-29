@@ -2,16 +2,14 @@ pipeline {
   agent any
 
   environment {
+    APP_REPO_URL   = 'https://github.com/emreyardimci/t-demoapp.git'
+    APP_REPO_BRANCH= 'main'
+    
     JFROG_URL        = 'https://artifactory.company.com'
     DOCKER_REGISTRY  = 'artifactory.company.com'
     DOCKER_REPO      = 'docker-local'
-
     IMAGE_NAME = 'simple-java-app'
     IMAGE_TAG  = "${BUILD_NUMBER}"
-
-    // Başka repo (Java app) – değiştir
-    APP_REPO_URL   = 'https://github.com/emreyardimci/t-demoapp.git'
-    APP_REPO_BRANCH= 'main'
   }
 
   stages {
@@ -24,10 +22,8 @@ pipeline {
     stage('Checkout & Build (Java App Repo)') {
       steps {
         dir('app') {
-          // Public repo ise credentials kaldırabilirsin.
-          // Private ise Jenkins credentialsId ver (örn: 'github-creds')
-          git url: "${APP_REPO_URL}", branch: "${APP_REPO_BRANCH}" /*, credentialsId: 'github-creds' */
-
+          git url: "${APP_REPO_URL}", branch: "${APP_REPO_BRANCH}" 
+          java -version
           sh 'mvn -B -DskipTests=false clean test package'
         }
       }
