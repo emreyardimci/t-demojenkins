@@ -23,7 +23,7 @@ pipeline {
       steps {
         dir('app') {
           git url: "${APP_REPO_URL}", branch: "${APP_REPO_BRANCH}" 
-          java -version
+          sh 'java -version'
           sh 'mvn -B -DskipTests=false clean test package'
         }
       }
