@@ -44,13 +44,13 @@ pipeline {
 
     stage('podman Push to Artifactory') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'jfrog-creds', usernameVariable: 'JF_USER', passwordVariable: 'JF_PASS')]) {
+        //withCredentials([usernamePassword(credentialsId: 'jfrog-creds', usernameVariable: 'JF_USER', passwordVariable: 'JF_PASS')]) {
           sh """
-            echo "${JF_PASS}" | podman login ${DOCKER_REGISTRY} -u "${JF_USER}" --password-stdin
+            #echo "${JF_PASS}" | podman login ${DOCKER_REGISTRY} -u "${JF_USER}" --password-stdin
             podman push ${DOCKER_REGISTRY}/${DOCKER_REPO}/${IMAGE_NAME}:${IMAGE_TAG}
             podman logout ${DOCKER_REGISTRY} || true
           """
-        }
+        //}
       }
     }
   }
