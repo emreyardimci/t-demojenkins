@@ -7,10 +7,10 @@ pipeline {
     
     IMAGE_NAME = 't-demoapp'
     IMAGE_TAG  = "${BUILD_NUMBER}"
-    
-    JFROG_URL        = 'https://artifactory.company.com'
-    DOCKER_REGISTRY  = 'artifactory.company.com'
-    DOCKER_REPO      = 'docker-local'
+
+
+    DOCKER_REGISTRY  = 'trialml6ikw.jfrog.io'
+    DOCKER_REPO      = 'quasys-docker-demo'
     JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-17.0.1.0.12-2.el8_5.x86_64'
     PATH = "${JAVA_HOME}/bin:${env.PATH}"
   }
@@ -34,7 +34,7 @@ pipeline {
     stage('podman Build') {
       steps {
         sh """
-          podman build \
+          sudo podman build \
             --build-arg JAR_FILE=app/target/*.jar \
             -t ${DOCKER_REGISTRY}/${DOCKER_REPO}/${IMAGE_NAME}:${IMAGE_TAG} .
           podman image ls | head -n 20
