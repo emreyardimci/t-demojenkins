@@ -33,24 +33,13 @@ pipeline {
 
     stage('podman Build') {
       steps {
-        sh """
-          sudo podman build \
-            --build-arg JAR_FILE=app/target/*.jar \
-            -t ${DOCKER_REGISTRY}/${DOCKER_REPO}/${IMAGE_NAME}:${IMAGE_TAG} .
-          podman image ls | head -n 20
-        """
+        sh "sudo podman build -t ${DOCKER_REGISTRY}/${DOCKER_REPO}/${IMAGE_NAME}:${IMAGE_TAG} ."
       }
     }
 
     stage('podman Push to Artifactory') {
       steps {
-        //withCredentials([usernamePassword(credentialsId: 'jfrog-creds', usernameVariable: 'JF_USER', passwordVariable: 'JF_PASS')]) {
-          sh """
-            #echo "${JF_PASS}" | podman login ${DOCKER_REGISTRY} -u "${JF_USER}" --password-stdin
-            podman push ${DOCKER_REGISTRY}/${DOCKER_REPO}/${IMAGE_NAME}:${IMAGE_TAG}
-            podman logout ${DOCKER_REGISTRY} || true
-          """
-        //}
+        sh "sudo podman push ${DOCKER_REGISTRY}/${DOCKER_REPO}/${IMAGE_NAME}:${IMAGE_TAG}"
       }
     }
   }
