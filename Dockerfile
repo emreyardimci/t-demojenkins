@@ -1,5 +1,5 @@
 # Runtime image (Java 17)
-FROM eclipse-temurin:17-jre
+FROM redhat/ubi9
 
 WORKDIR /app
 
