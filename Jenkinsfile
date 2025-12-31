@@ -12,13 +12,15 @@ pipeline {
         stage('Checkout (Pipeline Repo)') {
             steps { checkout scm }
         }
-    }
 
-       stage('Checkout & Build (Java App Repo)') {
-      steps {
-        dir('app') {
-          git url: "${APP_REPO_URL}", branch: "${APP_REPO_BRANCH}" 
+        stage('Checkout & Build (Java App Repo)') {
+            steps {
+                dir('app') {
+                git url: "${APP_REPO_URL}", branch: "${APP_REPO_BRANCH}" 
+                }
+            }
         }
-      }
-    }
+
+        
+    }     
 }
