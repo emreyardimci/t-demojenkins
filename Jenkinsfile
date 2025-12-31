@@ -38,5 +38,10 @@ pipeline {
             }
         }
 
+        stage('podman Push to Artifactory') {
+            steps {
+                sh "sudo podman push ${DOCKER_REGISTRY}/${DOCKER_REPO}/${IMAGE_NAME}:${IMAGE_TAG}"
+            }
+         }
     }     
 }
