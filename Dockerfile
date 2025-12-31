@@ -1,5 +1,5 @@
 # Runtime image (Java 17)
-FROM  registry.access.redhat.com/ubi9/ubi:latest
+FROM  registry.access.redhat.com/ubi8/openjdk-17-runtime:latest
 
 WORKDIR /app
 
