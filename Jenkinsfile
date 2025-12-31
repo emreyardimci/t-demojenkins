@@ -18,7 +18,10 @@ pipeline {
                 dir('app') {
                 git url: "${APP_REPO_URL}", branch: "${APP_REPO_BRANCH}" 
                 sh """
-                    mvn -DskipTests=false clean package
+                    mvn -B \
+                    -DskipTests=false \
+                    -DaltDeploymentRepository=demo-java-repo::default::https://trialml6ikw.jfrog.io/artifactory/demo-java-repo \
+                    clean test deploy
                 """
                 }
             }
