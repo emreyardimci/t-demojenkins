@@ -17,10 +17,13 @@ pipeline {
             steps {
                 dir('app') {
                 git url: "${APP_REPO_URL}", branch: "${APP_REPO_BRANCH}" 
+                sh """
+                    mvn -DskipTests=false clean package
+                """
                 }
             }
         }
 
-        
+
     }     
 }
