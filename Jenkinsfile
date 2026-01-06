@@ -23,6 +23,7 @@ pipeline {
                 dir('app') {
                 git url: "${APP_REPO_URL}", branch: "${APP_REPO_BRANCH}" 
                 sh """
+                    mvn -B versions:set -DnewVersion=1.0.${BUILD_NUMBER} -DgenerateBackupPoms=false
                     mvn -B \
                     -DskipTests=false \
                     -DaltDeploymentRepository=demo-java-repo::default::https://trialml6ikw.jfrog.io/artifactory/demo-java-repo \
