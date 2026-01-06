@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Jenkins/Maven build çıktısı: target/*.jar
 # (artifactId/version değişse bile yakalar)
-COPY app/target/app.jar /app/app.jar
+COPY app/target/hello-world-*.jar /app/app.jar
 
 # Uygulama sadece stdout'a yazıyorsa port gerekmez.
 # Eğer ileride web app olursa açabilirsin:
