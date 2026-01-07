@@ -39,6 +39,12 @@ pipeline {
             }
         }
 
+        stage('Image Scan') {
+            steps {
+                sh "sudo jf docker scan ${DOCKER_REGISTRY}/${DOCKER_REPO}/${IMAGE_NAME}:${IMAGE_TAG}"
+            }
+        }
+
         stage('podman Push to Artifactory') {
             steps {
                 sh "sudo podman push ${DOCKER_REGISTRY}/${DOCKER_REPO}/${IMAGE_NAME}:${IMAGE_TAG}"
