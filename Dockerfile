@@ -6,7 +6,7 @@ WORKDIR /app
 # Jenkins/Maven build çıktısı: target/*.jar
 # (artifactId/version değişse bile yakalar)
 COPY app/target/hello-world-*.jar /app/app.jar
-
+ENV DB_PASSWORD=SuperSecret123!
 # Uygulama sadece stdout'a yazıyorsa port gerekmez.
 # Eğer ileride web app olursa açabilirsin:
 # EXPOSE 8080
