@@ -42,6 +42,7 @@ pipeline {
         stage('Image Scan') {
             steps {
                 //sh "sudo jf docker scan ${DOCKER_REGISTRY}/${DOCKER_REPO}/${IMAGE_NAME}:${IMAGE_TAG}"
+                sh ""
             }
         }
 
