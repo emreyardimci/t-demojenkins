@@ -10,6 +10,6 @@ COPY app/target/hello-world-*.jar /app/app.jar
 # Uygulama sadece stdout'a yazıyorsa port gerekmez.
 # Eğer ileride web app olursa açabilirsin:
 # EXPOSE 8080
-ENV APP_API_KEY=MyAPIKey
+ENV APP_POSTGRESQL_USERNAME=MyPostgresqlUserName
 
 ENTRYPOINT ["java","-jar","/app/app.jar"]
